@@ -160,25 +160,3 @@ public class MathExpressionParser
         return EvaluateRpn(rpnTokens);
     }
 }
-public class Program
-{
-    public static void Main()
-    {
-        String input=null;
-        try
-        {
-            
-            while (input != "")
-            {
-                input = Console.ReadLine();
-                double result1 = MathExpressionParser.ParseAndEvaluate(input);
-                Console.WriteLine(result1 + "\n");
-            }
-            
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Ошибка при вычислении: {ex.Message}");
-        }
-    }
-}

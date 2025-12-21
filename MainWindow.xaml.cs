@@ -8,7 +8,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 namespace Calculator2000
 {
     /// <summary>
@@ -22,11 +21,13 @@ namespace Calculator2000
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
         private void DoMath(string Token)
         {
             tokenBox.Text += Convert.ToString(Token); // ToString можно поменять на другой тип данных
+            
         }
 
         // кнопки с цифрами
@@ -130,13 +131,21 @@ namespace Calculator2000
 
         private void bttndel(object sender, RoutedEventArgs e) // удалить
         {
-            Token = "del";
+            if(tokenBox.Text.Length>0)
+            tokenBox.Text=tokenBox.Text.Substring(0, tokenBox.Text.Length - 1);
         }
 
        
         private void bttneq(object sender, RoutedEventArgs e) // =
         {
-
+            try
+            {
+                tokenBox.Text = Convert.ToString(MathExpressionParser.ParseAndEvaluate(tokenBox.Text));
+            }
+            catch 
+            {
+                tokenBox.Text = "Error";
+            }
         }
     }
 }
